@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, fireEvent, screen } from "@testing-library/react";
-import { Input } from "../../common/Input";
+import { Input } from "../../common";
 
 describe("Input component", () => {
   const placeholderTextMock = "Enter a value";

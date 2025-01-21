@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import { CourseCard } from "../../components/Courses/components/CourseCard/CourseCard";
+import { CourseCard } from "../../components/Courses/components";
 
 describe("CourseCard component", () => {
   const course = {

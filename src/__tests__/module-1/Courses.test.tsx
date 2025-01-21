@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import { Courses } from "../../components/Courses/Courses";
+import { Courses } from "../../components";
 
 describe("Courses component", () => {
   const mockedCoursesList = [

@@ -59,18 +59,10 @@ export const CourseCard: React.FC<CourseCardProps> = ({
     console.log("Show course id", course.id);
   };
 
-  const getMockedAuthorById = (id: string): string | null => {
-    return authorsList.find((author) => author.id === id)?.name || null;
-  };
-
-  const authorList = (): string[] => {
-    const authors = course.authors.map((id) => {
-      return getMockedAuthorById(id);
-    });
-    return authors.filter((author) => !!author) as string[];
-  };
-
-  const authors = authorList().join(", ");
+  const authors = course.authors
+    .map((id) => authorsList.find((author) => author.id === id)?.name || null)
+    .filter((name): name is string => !!name)
+    .join(", ");
 
   return (
     <div className={styles.cardContainer} data-testid="courseCard">

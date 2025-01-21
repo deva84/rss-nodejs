@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { CourseInfo } from "../../components/CourseInfo";
+import { CourseInfo } from "../../components";
 import { formatCreationDate, getCourseDuration } from "../../helpers";
 
 const mockedCoursesList = [

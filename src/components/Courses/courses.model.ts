@@ -1,7 +1,7 @@
 export interface CourseCardProps {
   course: Course;
-  handleShowCourse: (course: string) => void;
   authorsList: Author[];
+  handleShowCourse?: (course: string) => void;
 }
 
 export interface Course {
