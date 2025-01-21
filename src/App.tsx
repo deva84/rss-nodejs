@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./App.module.css";
-import { Courses, Header } from "./components";
+import { CourseInfo, Courses, Header } from "./components";
 import { mockedAuthorsList, mockedCoursesList } from "./constants";
 
 // Module 1:
@@ -34,21 +34,35 @@ import { mockedAuthorsList, mockedCoursesList } from "./constants";
 // 'PrivateRoute' component * get authorized user info by 'user/me' GET request if 'localStorage' contains token
 
 export default function App() {
+  const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
+
   const handleShowCourse = (id: string) => {
-    console.log("Show course id", id);
+    console.log("handleShowCourse", id);
+    setSelectedCourseId(id);
+  };
+
+  const handleBack = () => {
+    setSelectedCourseId(null);
   };
 
   return (
     <div className={styles.wrapper}>
       <Header />
       <div className={styles.container}>
-        {
+        {selectedCourseId ? (
+          <CourseInfo
+            coursesList={mockedCoursesList}
+            authorsList={mockedAuthorsList}
+            onBack={handleBack}
+            showCourseId={selectedCourseId}
+          />
+        ) : (
           <Courses
-            coursesList={[]}
+            coursesList={mockedCoursesList}
             authorsList={mockedAuthorsList}
             handleShowCourse={handleShowCourse}
           />
-        }
+        )}
       </div>
     </div>
   );

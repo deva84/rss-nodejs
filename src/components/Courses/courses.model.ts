@@ -22,10 +22,15 @@ export enum ButtonAction {
   ADD = "add",
   DELETE = "delete",
   UPDATE = "update",
+  SHOW = "show",
 }
 
 export interface CoursesProps {
   coursesList: Course[];
   authorsList: Author[];
   handleShowCourse: (id: string) => void;
+}
+
+export interface SearchBarProps {
+  handleSearch: (searchValue?: string | null) => void;
 }

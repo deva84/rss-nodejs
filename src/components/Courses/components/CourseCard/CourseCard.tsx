@@ -38,13 +38,17 @@
 
 import React from "react";
 
-import { getCourseDuration, formatCreationDate } from "../../../../helpers";
+import {
+  getCourseDuration,
+  formatCreationDate,
+  getAuthorsList,
+} from "../../../../helpers";
 
 import deleteIcon from "../../../../assets/deleteButtonIcon.svg";
 import editIcon from "../../../../assets/editButtonIcon.svg";
 
 import styles from "./styles.module.css";
-import { CourseCardProps } from "../../courses.model";
+import { ButtonAction, CourseCardProps } from "../../courses.model";
 import { Button } from "../../../../common";
 
 export const CourseCard: React.FC<CourseCardProps> = ({
@@ -55,14 +59,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({
   const duration = getCourseDuration(course.duration);
   const date = formatCreationDate(course.creationDate);
 
-  const handleClick = (): void => {
-    console.log("Show course id", course.id);
-  };
-
-  const authors = course.authors
-    .map((id) => authorsList.find((author) => author.id === id)?.name || null)
-    .filter((name): name is string => !!name)
-    .join(", ");
+  const authors = getAuthorsList(course.authors, authorsList).join(", ");
 
   return (
     <div className={styles.cardContainer} data-testid="courseCard">
@@ -91,7 +88,10 @@ export const CourseCard: React.FC<CourseCardProps> = ({
 				reuse Button component wrapped with Link from react-router with editButtonIcon from 'src/assets' for 'Update' button with
 						data-testid="updateCourse" 
 			*/}
-          <Button buttonText="Show course" handleClick={handleClick} />
+          <Button
+            buttonText="Show course"
+            handleClick={() => handleShowCourse?.(course.id)}
+          />
         </div>
       </div>
     </div>

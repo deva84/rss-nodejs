@@ -1,2 +1,5 @@
-export const formatCreationDate = (date: string): string =>
-  date.replaceAll("/", ".");
+export const formatCreationDate = (date?: string | null): string => {
+  if (!date) return "";
+
+  return date.replaceAll("/", ".");
+};

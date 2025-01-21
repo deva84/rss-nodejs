@@ -1,5 +1,10 @@
 .panel {
   display: flex;
-  justify-content: flex-end;
-  margin: 16px 0;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.searchWrapper {
+  flex-grow: 1;
 }

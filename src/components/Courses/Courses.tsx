@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styles from "./styles.module.css";
-import { EmptyCourseList } from "./components/EmptyCourseList";
 import { Button } from "../../common";
-import { ButtonAction, CoursesProps } from "./courses.model";
-import { CourseCard } from "./components";
+import { ButtonAction, Course, CoursesProps } from "./courses.model";
+import { CourseCard, EmptyCourseList, SearchBar } from "./components";
 
 // Module 1:
 // * render list of components using 'CourseCard' component for each course
@@ -41,6 +40,7 @@ export const Courses: React.FC<CoursesProps> = ({
   authorsList,
   handleShowCourse,
 }) => {
+  const [coursesToShow, setCoursesToShow] = useState<Course[]>(coursesList);
   if (!coursesList.length) {
     return <EmptyCourseList data-testid="emptyContainer" />;
   }
@@ -49,23 +49,49 @@ export const Courses: React.FC<CoursesProps> = ({
     console.log("Button clicked", action, id);
   };
 
+  const getFilteredCourses = (searchValue?: string | null): Course[] => {
+    if (!searchValue) {
+      return coursesList;
+    }
+
+    const query = searchValue.toLowerCase();
+
+    return coursesList.filter((course) => {
+      const title = course.title.toLowerCase();
+      const id = course.id.toLowerCase();
+      return title.includes(query) || id.includes(query);
+    });
+  };
+
+  const handleSearch = (searchValue?: string | null): void => {
+    const filteredCourses = getFilteredCourses(searchValue);
+    setCoursesToShow(filteredCourses);
+  };
+
   return (
     <>
       <div className={styles.panel}>
+        <div className={styles.searchWrapper}>
+          <SearchBar handleSearch={handleSearch} />
+        </div>
         <Button
           buttonText="Add New Course"
           handleClick={() => handleClick(ButtonAction.ADD)}
           data-testid="addCourse"
         />
       </div>
-      {coursesList.map((course) => (
-        <CourseCard
-          key={course.id}
-          course={course}
-          handleShowCourse={() => handleShowCourse(course.id)}
-          authorsList={authorsList}
-        />
-      ))}
+      {coursesToShow.length ? (
+        coursesToShow.map((course) => (
+          <CourseCard
+            key={course.id}
+            course={course}
+            handleShowCourse={handleShowCourse}
+            authorsList={authorsList}
+          />
+        ))
+      ) : (
+        <p>No courses found!</p>
+      )}
     </>
   );
 };

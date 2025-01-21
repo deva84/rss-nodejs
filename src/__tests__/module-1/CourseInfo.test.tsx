@@ -32,11 +32,13 @@ const authorsList = [
 
 describe("CourseInfo", () => {
   test("should renders correct title (find correct course from coursesList based on showCourseId prop) ", () => {
+    const handleOnBack = jest.fn();
     render(
       <CourseInfo
         coursesList={mockedCoursesList}
         authorsList={authorsList}
         showCourseId="1"
+        onBack={handleOnBack}
       />
     );
 
@@ -46,11 +48,13 @@ describe("CourseInfo", () => {
   });
 
   test("should renders correct description", () => {
+    const handleOnBack = jest.fn();
     render(
       <CourseInfo
         coursesList={mockedCoursesList}
         authorsList={authorsList}
         showCourseId="1"
+        onBack={handleOnBack}
       />
     );
 
@@ -60,25 +64,34 @@ describe("CourseInfo", () => {
   });
 
   test("should renders correct course duration (use getCourseDuration)", () => {
+    const handleOnBack = jest.fn();
     render(
       <CourseInfo
         coursesList={mockedCoursesList}
         authorsList={authorsList}
         showCourseId="1"
+        onBack={handleOnBack}
+        data-testid="courseInfo"
       />
     );
 
-    const courseDuration = screen.queryByText(getCourseDuration(60));
+    const durationTime = screen.getByText("01:00");
+    const durationUnits = screen.getByText(
+      (content) => content.trim() === "hour"
+    );
 
-    expect(courseDuration).toBeInTheDocument();
+    expect(durationTime).toBeInTheDocument();
+    expect(durationUnits).toBeInTheDocument();
   });
 
   test("should renders correct course creation date (use formatCreationDate)", () => {
+    const handleOnBack = jest.fn();
     render(
       <CourseInfo
         coursesList={mockedCoursesList}
         authorsList={authorsList}
         showCourseId="1"
+        onBack={handleOnBack}
       />
     );
 
@@ -89,27 +102,32 @@ describe("CourseInfo", () => {
   });
 
   test("should renders correct course authors names (find a course in the coursesList and match data from course authors and authorsList prop)", () => {
+    const handleOnBack = jest.fn();
     render(
       <CourseInfo
         coursesList={mockedCoursesList}
         authorsList={authorsList}
         showCourseId="1"
+        onBack={handleOnBack}
       />
     );
 
-    const authorNames = screen
-      .getAllByRole("listitem")
-      .map((li) => li.textContent);
+    const authorsSpan = screen.getByText(/Authors:/).nextSibling as HTMLElement;
+    const authorNames = authorsSpan.textContent
+      ?.split(", ")
+      .map((name) => name.trim());
 
     expect(authorNames).toEqual(["name2", "name3"]);
   });
 
   test("should render `BACK` button correctly", () => {
+    const handleOnBack = jest.fn();
     render(
       <CourseInfo
         coursesList={mockedCoursesList}
         authorsList={authorsList}
         showCourseId="1"
+        onBack={handleOnBack}
       />
     );
 
@@ -129,7 +147,7 @@ describe("CourseInfo", () => {
       />
     );
 
-    const backButton = screen.queryByText(/back/i);
+    const backButton = screen.queryByText(/back/i) as HTMLButtonElement;
     fireEvent.click(backButton);
     expect(onBack).toHaveBeenCalledTimes(1);
   });

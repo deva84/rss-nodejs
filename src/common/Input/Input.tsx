@@ -1,13 +1,12 @@
-// Module 1.
-// ** TASK DESCRIPTION ** - https://ebook.learn.epam.com/react-fundamentals/docs/module-1/home-task/components#create-input-component
-
 import React from "react";
 
 import styles from "./styles.module.css";
+import { InputProps } from "../common.model";
 
-export const Input = ({
+export const Input: React.FC<InputProps> = ({
   placeholderText,
   labelText,
+  value,
   onChange,
   "data-testid": dataTestId,
 }) => (
@@ -16,6 +15,7 @@ export const Input = ({
     <input
       onChange={onChange}
       placeholder={placeholderText}
+      value={value ?? ""}
       className={styles.input}
       data-testid={dataTestId}
     />
