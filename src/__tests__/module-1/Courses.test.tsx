@@ -36,8 +36,10 @@ describe("Courses component", () => {
       <Courses
         coursesList={mockedCoursesList}
         authorsList={authorsList}
-        onAddClick={onAddClick}
-        handleShowCourse={(id) => {}}
+        handleAddCourse={onAddClick}
+        handleShowCourse={(id) => {
+          console.log(id);
+        }}
       />
     );
 
@@ -52,8 +54,10 @@ describe("Courses component", () => {
       <Courses
         coursesList={mockedCoursesList}
         authorsList={authorsList}
-        onAddClick={onAddClick}
-        handleShowCourse={(id) => {}}
+        handleAddCourse={onAddClick}
+        handleShowCourse={(id) => {
+          console.log(id);
+        }}
       />
     );
 
@@ -67,8 +71,10 @@ describe("Courses component", () => {
       <Courses
         coursesList={[]}
         authorsList={authorsList}
-        onAddClick={onAddClick}
-        handleShowCourse={(id) => {}}
+        handleAddCourse={onAddClick}
+        handleShowCourse={(id) => {
+          console.log(id);
+        }}
       />
     );
 

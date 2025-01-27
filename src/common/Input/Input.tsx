@@ -8,6 +8,7 @@ export const Input: React.FC<InputProps> = ({
   labelText,
   value,
   onChange,
+  hasError,
   "data-testid": dataTestId,
 }) => (
   <label className={styles.label}>
@@ -16,7 +17,7 @@ export const Input: React.FC<InputProps> = ({
       onChange={onChange}
       placeholder={placeholderText}
       value={value ?? ""}
-      className={styles.input}
+      className={`${styles.input} ${hasError ? styles.error : ""}`}
       data-testid={dataTestId}
     />
   </label>

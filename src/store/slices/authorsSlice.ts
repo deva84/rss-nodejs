@@ -7,13 +7,13 @@ export const authorsSlice = createSlice({
   initialState,
   reducers: {
     // @ts-ignore
-     setAuthors: [],
+    setAuthors: [],
     // @ts-ignore
-     saveAuthor: [],
+    saveAuthor: [],
   },
 });
 
 // use these actions in your components / thunks
- export const { setAuthors, saveAuthor } = authorsSlice.actions;
+export const { setAuthors, saveAuthor } = authorsSlice.actions;
 
 export default authorsSlice.reducer;

@@ -29,6 +29,7 @@ export interface CoursesProps {
   coursesList: Course[];
   authorsList: Author[];
   handleShowCourse: (id: string) => void;
+  handleAddCourse: () => void;
 }
 
 export interface SearchBarProps {

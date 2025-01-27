@@ -4,15 +4,6 @@ import styles from "./styles.module.css";
 import { Button } from "../../common";
 import { ButtonAction, Course, CoursesProps } from "./courses.model";
 import { CourseCard, EmptyCourseList, SearchBar } from "./components";
-
-// Module 1:
-// * render list of components using 'CourseCard' component for each course
-// * render 'ADD NEW COURSE' button (reuse Button component)
-// ** TASK DESCRIPTION ** - https://ebook.learn.epam.com/react-fundamentals/docs/module-1/home-task/components#courses-component
-// * render EmptyCourseList component when no courses
-// ** TASK DESCRIPTION ** - https://ebook.learn.epam.com/react-fundamentals/docs/module-1/home-task/components#emptycourselist-component
-// * DO NOT map authors to the course inside Courses.jsx component (DO it inside CourseCard)
-
 // Module 2:
 // * render this component by route '/courses'
 // * navigate to this component if 'localStorage' contains user's token
@@ -39,15 +30,12 @@ export const Courses: React.FC<CoursesProps> = ({
   coursesList,
   authorsList,
   handleShowCourse,
+  handleAddCourse,
 }) => {
   const [coursesToShow, setCoursesToShow] = useState<Course[]>(coursesList);
   if (!coursesList.length) {
     return <EmptyCourseList data-testid="emptyContainer" />;
   }
-
-  const handleClick = (action: ButtonAction, id?: string) => {
-    console.log("Button clicked", action, id);
-  };
 
   const getFilteredCourses = (searchValue?: string | null): Course[] => {
     if (!searchValue) {
@@ -76,7 +64,7 @@ export const Courses: React.FC<CoursesProps> = ({
         </div>
         <Button
           buttonText="Add New Course"
-          handleClick={() => handleClick(ButtonAction.ADD)}
+          handleClick={handleAddCourse}
           data-testid="addCourse"
         />
       </div>

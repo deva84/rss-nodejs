@@ -1,13 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./App.module.css";
-import { CourseInfo, Courses, Header } from "./components";
-import { mockedAuthorsList, mockedCoursesList } from "./constants";
-
-// Module 1:
-// * use mockedAuthorsList and mockedCoursesList mocked data
-// * add next components to the App component: Header, Courses and CourseInfo
-// * pass 'mockedAuthorsList' and 'mockedCoursesList' to the Courses and CourseInfo components
-// * use hook useState for saving selected courseId [showCourseId, handleShowCourse]
+import { Header } from "./components";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { routesConfig } from "./routes";
 
 // Module 2:
 // * use mockedAuthorsList and mockedCoursesList mocked data
@@ -34,35 +29,13 @@ import { mockedAuthorsList, mockedCoursesList } from "./constants";
 // 'PrivateRoute' component * get authorized user info by 'user/me' GET request if 'localStorage' contains token
 
 export default function App() {
-  const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
-
-  const handleShowCourse = (id: string) => {
-    console.log("handleShowCourse", id);
-    setSelectedCourseId(id);
-  };
-
-  const handleBack = () => {
-    setSelectedCourseId(null);
-  };
+  const router = createBrowserRouter(routesConfig);
 
   return (
     <div className={styles.wrapper}>
       <Header />
       <div className={styles.container}>
-        {selectedCourseId ? (
-          <CourseInfo
-            coursesList={mockedCoursesList}
-            authorsList={mockedAuthorsList}
-            onBack={handleBack}
-            showCourseId={selectedCourseId}
-          />
-        ) : (
-          <Courses
-            coursesList={mockedCoursesList}
-            authorsList={mockedAuthorsList}
-            handleShowCourse={handleShowCourse}
-          />
-        )}
+        <RouterProvider router={router} />
       </div>
     </div>
   );
