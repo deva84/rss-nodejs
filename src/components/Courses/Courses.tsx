@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import { Button } from "../../common";
 import { ButtonAction, Course, CoursesProps } from "./courses.model";
 import { CourseCard, EmptyCourseList, SearchBar } from "./components";

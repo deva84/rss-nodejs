@@ -1,6 +1,6 @@
 // import React from "react";
 
-// import styles from "./styles.module.css";
+// import styles from "./styles.module.scss";
 
 // export const AuthorItem = () => (
 // 	<div className={styles.authorItem} data-testid='authorItem'>

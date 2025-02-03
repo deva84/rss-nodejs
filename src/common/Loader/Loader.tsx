@@ -1,7 +1,7 @@
 import React from "react";
 import { PuffLoader } from "react-spinners";
 
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 export const Loader: React.FC = () => {
   return (

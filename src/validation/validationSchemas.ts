@@ -1,13 +1,5 @@
 import { object, ObjectSchema, string } from "yup";
-
-export interface LoginForm {
-  email: string | null;
-  password: string | null;
-}
-
-export interface RegistrationForm extends LoginForm {
-  name: string | null;
-}
+import { LoginForm, RegistrationForm } from "../components";
 
 const commonSchema = {
   email: string()

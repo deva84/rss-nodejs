@@ -48,7 +48,7 @@
 
 // import React from "react";
 
-// import styles from "./styles.module.css";
+// import styles from "./styles.module.scss";
 
 // export const CourseForm = ({ authorsList, createCourse, createAuthor }) => {
 //   //write your code here

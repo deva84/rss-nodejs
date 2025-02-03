@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import { Button, Input } from "../../../../common";
 import { SearchBarProps } from "../../courses.model";
 

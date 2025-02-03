@@ -10,7 +10,7 @@
 // // Remove 'onCreateAuthor' from props => use 'dispatch' and 'saveAuthor' from 'authorsSlice.ts' to save new author to the store
 
 // import React from "react";
-// import styles from "./styles.module.css";
+// import styles from "./styles.module.scss";
 
 // export const CreateAuthor = ({onCreateAuthor}) => {
 //   // write your code here

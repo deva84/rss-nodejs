@@ -47,7 +47,7 @@ import {
 import deleteIcon from "../../../../assets/deleteButtonIcon.svg";
 import editIcon from "../../../../assets/editButtonIcon.svg";
 
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import { ButtonAction, CourseCardProps } from "../../courses.model";
 import { Button } from "../../../../common";
 

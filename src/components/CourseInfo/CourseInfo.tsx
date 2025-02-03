@@ -30,7 +30,7 @@ import {
   getCourseDuration,
 } from "../../helpers";
 
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import { CourseInfoProps } from "./courseInfo.model";
 import { Button } from "../../common";
 
